@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ "$ACTION" = "ifup" ] || exit 0
+. /lib/functions.sh
+
+config_load campus_portal
+config_get interface main interface wan
+config_get_bool enabled main enabled 0
+
+[ "$enabled" -eq 1 ] || exit 0
+[ "$INTERFACE" = "$interface" ] || exit 0
+
+/etc/init.d/campus-portal restart >/dev/null 2>&1

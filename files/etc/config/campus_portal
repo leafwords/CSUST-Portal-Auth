@@ -1,0 +1,6 @@
+config service 'main'
+	option enabled '0'
+	option interface 'wan'
+	option username ''
+	option password ''
+	option interval '30'

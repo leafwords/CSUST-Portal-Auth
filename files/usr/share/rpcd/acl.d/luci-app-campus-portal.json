@@ -1,0 +1,17 @@
+{
+	"luci-app-campus-portal": {
+		"description": "Grant access to the Campus Portal configuration and status",
+		"read": {
+			"file": {
+				"/tmp/campus-portal.status": [ "read" ]
+			},
+			"ubus": {
+				"rc": [ "list" ]
+			},
+			"uci": [ "campus_portal" ]
+		},
+		"write": {
+			"uci": [ "campus_portal" ]
+		}
+	}
+}

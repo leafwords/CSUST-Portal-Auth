@@ -1,0 +1,14 @@
+{
+	"admin/services/campus-portal": {
+		"title": "校园网 Portal 认证",
+		"order": 45,
+		"action": {
+			"type": "view",
+			"path": "services/campus-portal-v2"
+		},
+		"depends": {
+			"acl": [ "luci-app-campus-portal" ],
+			"uci": [ "campus_portal" ]
+		}
+	}
+}

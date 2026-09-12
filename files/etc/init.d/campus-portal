@@ -1,0 +1,43 @@
+#!/bin/sh /etc/rc.common
+
+START=95
+STOP=10
+USE_PROCD=1
+
+PROG=/usr/libexec/campus-portal.uc
+
+start_service() {
+	local enabled
+
+	config_load campus_portal
+	config_get_bool enabled main enabled 0
+	[ "$enabled" -eq 1 ] || return 0
+
+	procd_open_instance
+	procd_set_param command /usr/bin/ucode "$PROG" daemon
+	procd_set_param respawn 3600 5 5
+	procd_set_param file /etc/config/campus_portal
+	procd_set_param stdout 1
+	procd_set_param stderr 1
+	procd_close_instance
+}
+
+reload_service() {
+	stop
+	start
+}
+
+service_triggers() {
+	procd_add_reload_trigger campus_portal
+}
+
+extra_command "probe" "Probe the campus portal without logging in"
+extra_command "once" "Run one authentication attempt"
+
+probe() {
+	/usr/bin/ucode "$PROG" probe
+}
+
+once() {
+	/usr/bin/ucode "$PROG" once
+}
