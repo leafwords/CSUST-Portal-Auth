@@ -75,7 +75,7 @@ apk add --allow-untrusted ./luci-app-campus-portal-1.2.0-r1.apk
 OpenWrt 24.10 及以下：
 
 ```sh
-opkg install ./luci-app-campus-portal_1.2.0-r1_all.ipk
+opkg install --force-signature ./luci-app-campus-portal_1.2.0-r1_all.ipk
 ```
 
 安装后启用服务：
